@@ -70,8 +70,7 @@ Mobile Development: Dive into Xamarin or .NET MAUI for cross-platform mobile dev
   2. CI/CD: Learn to automate deployment using tools like GitHub Actions, Azure DevOps, or Jenkins.
 
 # 10. Stay Updated and Contribute
-  .NET evolves rapidly, so staying updated is crucial:
-
+  NET evolves rapidly, so staying updated is crucial:
     - Follow the official .NET blog: https://devblogs.microsoft.com/dotnet/.
     - Join communities: Engage in C# and .NET communities like Stack Overflow, Reddit, and GitHub.
     - Contribute to Open Source: Participate in open-source projects on GitHub to enhance your skills.
