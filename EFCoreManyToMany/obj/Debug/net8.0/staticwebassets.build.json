@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "lNMXflebGxEZJVLZhiFaQNh2mbE1BrXgpt6OTcGDArw=",
+  "Source": "EFCoreManyToMany",
+  "BasePath": "_content/EFCoreManyToMany",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

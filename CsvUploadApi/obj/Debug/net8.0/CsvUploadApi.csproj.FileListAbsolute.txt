@@ -49,3 +49,4 @@
 /home/ram/C#/CsvUploadApi/obj/Debug/net8.0/CsvUploadApi.pdb
 /home/ram/C#/CsvUploadApi/obj/Debug/net8.0/CsvUploadApi.genruntimeconfig.cache
 /home/ram/C#/CsvUploadApi/obj/Debug/net8.0/ref/CsvUploadApi.dll
+/home/ram/C#/CsvUploadApi/obj/Debug/net8.0/CsvUploadApi.sourcelink.json
