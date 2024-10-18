@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EFCoreManyToMany")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5d4c410c0dde3e90b42dc7d7b3ccd7bdb088fbd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9076c492c2a942344479e181c27942564fabf794")]
 [assembly: System.Reflection.AssemblyProductAttribute("EFCoreManyToMany")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EFCoreManyToMany")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

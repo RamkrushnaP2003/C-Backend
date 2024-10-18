@@ -1,0 +1,40 @@
+@page
+@model CRUD.Pages.Customers.IndexModel
+@{
+    ViewData["Title"] = "Customer List";
+}
+
+<h2 class="text-center mb-3">List of Customers</h2>
+
+<a class="btn btn-primary mb-3" href="/customers/create">New Customer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Company</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersList)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@(customer.FirstName + " " + customer.LastName)</td>
+                <td>@customer.Email</td>
+                <td>@customer.Phone</td>
+                <td>@customer.Company</td>
+                <td>@customer.CreatedAt.ToString("MM/dd/yyyy")</td>
+                <td style="white-space:nowrap;">
+                    <a class="btn btn-primary btn-sm" href="/customers/edit?id=@customer.Id">Edit</a>
+                    <a class="btn btn-primary btn-sm btn-danger" href="/customers/delete?id=@customer.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
