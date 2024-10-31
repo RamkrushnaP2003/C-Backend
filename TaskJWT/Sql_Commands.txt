@@ -1,0 +1,110 @@
+
+CREATE DATABASE IF NOT EXISTS TaskJWT;
+
+
+USE TaskJWT;
+
+
+CREATE TABLE IF NOT EXISTS Roles (
+    RoleId INT PRIMARY KEY AUTO_INCREMENT,
+    RoleName VARCHAR(50) UNIQUE NOT NULL
+);	
+
+
+CREATE TABLE IF NOT EXISTS Users (
+    UserId INT PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(100) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    RoleId INT,
+    FOREIGN KEY (RoleId) REFERENCES Roles(RoleId)
+);
+
+INSERT INTO Users (Username, PasswordHash, RoleId) VALUES
+('Manager1', '$2b$12$ilPRxvRf/nmkSmYNvFDa8u1bzLttnx7dnQOTtKiInNFxdCHRyGjOa', 2),
+('Manager2', '$2b$12$R587s/qMgmojnJeAqhsqE.Cp1mXje9/bfQ2/uUEc/1dggn0duZPWy', 2);
+
+INSERT INTO Users (Username, PasswordHash, RoleId) VALUES
+('Employee1', '$2a$11$khruQyVc5frL26GvO4J1KeRraaxz46avZqmZ4S.Jh2i3EEBrkYVWe', 3),
+('Employee2', '$2a$11$FLdMd31N9trZl1c9L8fu3ekproWoK3Hg7OZV5hFqsXuiL1ggsxg32', 3);
+
+INSERT INTO Roles (RoleName) VALUES ('Admin'), ('Manager'), ('Employee');
+
+-- Create the stored procedure to get user by username
+DELIMITER //
+
+CREATE PROCEDURE sp_GetUserByUsername(IN userNameParam VARCHAR(100))
+BEGIN
+    SELECT u.UserId, u.Username, u.PasswordHash, u.RoleId
+    FROM Users u
+    WHERE u.Username = userNameParam;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+-- Create the stored procedure to create a new user
+CREATE PROCEDURE sp_CreateUser(IN Username VARCHAR(100), IN PasswordHash VARCHAR(255), IN RoleId INT)
+BEGIN
+    INSERT INTO Users (Username, PasswordHash, RoleId) VALUES (Username, PasswordHash, RoleId);
+END //
+
+-- Create the stored procedure to update a user
+CREATE PROCEDURE sp_UpdateUser(IN UserId INT, IN Username VARCHAR(100), IN PasswordHash VARCHAR(255), IN RoleId INT)
+BEGIN
+    UPDATE Users
+    SET Username = Username,
+        PasswordHash = PasswordHash,
+        RoleId = RoleId
+    WHERE UserId = UserId;
+END //
+
+-- Create the stored procedure to delete a user
+CREATE PROCEDURE sp_DeleteUser(IN UserId INT)
+BEGIN
+    DELETE FROM Users WHERE UserId = UserId;
+END //
+
+-- Create the stored procedure for user authentication
+CREATE PROCEDURE sp_AuthenticateUser(IN Username VARCHAR(100), IN PasswordHash VARCHAR(255))
+BEGIN
+    SELECT u.UserId, u.Username, r.RoleName
+    FROM Users u
+    INNER JOIN Roles r ON u.RoleId = r.RoleId
+    WHERE u.Username = Username AND u.PasswordHash = PasswordHash;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE `sp_CreateUser`(
+    IN _Username VARCHAR(100), 
+    IN _PasswordHash VARCHAR(255), 
+    IN _RoleId INT
+)
+BEGIN
+    INSERT INTO Users (Username, PasswordHash, RoleId) 
+    VALUES (_Username, _PasswordHash, _RoleId); -- Use prefixed parameter names
+END; //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_GetManagers() 
+BEGIN
+	SELECT * FROM Users Where RoleId = 2;
+END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE sp_GetEmployees()
+	BEGIN
+		SELECT * FROM Users WHERE RoleId = 3;
+	END
+// DELIMITER ;
+
+TRUNCATE TABLE Users;
+
+
+
