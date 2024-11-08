@@ -18,6 +18,7 @@ namespace TaskJWT.Controllers
             _tokenService = tokenService;
         }
 
+        // Endpoint for logging in
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel loginModel)
         {
@@ -25,7 +26,7 @@ namespace TaskJWT.Controllers
             if (user == null)
                 return Unauthorized("Invalid credentials.");
 
-            var token = _tokenService.GenerateToken(user);
+            var token = _tokenService.GenerateToken(user); // Example: "Admin" role
             return Ok(new { Token = token });
         }
     }

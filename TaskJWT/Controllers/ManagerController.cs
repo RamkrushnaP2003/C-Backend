@@ -5,7 +5,6 @@ using TaskJWT.Services;
 
 namespace TaskJWT.Controllers
 {
-    [Authorize(Roles = "Manager")]
     [Route("api/[controller]")]
     [ApiController]
     public class ManagerController : ControllerBase
@@ -15,6 +14,7 @@ namespace TaskJWT.Controllers
             _userService = userService;
         }
 
+        [Authorize(Roles = "Manager,Admin")]
         [HttpGet("data")]
         public IActionResult GetAllManager()
         {

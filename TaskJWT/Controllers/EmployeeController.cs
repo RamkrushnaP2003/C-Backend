@@ -11,12 +11,13 @@ namespace TaskJWT.Controllers
     {
         private readonly IUserService _userService;
 
-        public EmployeeController(IUserService userService) {
+        public EmployeeController(IUserService userService) 
+        {
             _userService = userService;
         } 
 
+        [Authorize(Roles = "Admin,Manager,Employee")]
         [HttpGet("data")]
-        [Authorize(Roles = "Employee")]
         public IActionResult GetEmployeeData()
         {
             var employees = _userService.GetAllEmployees();

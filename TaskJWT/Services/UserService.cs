@@ -43,11 +43,12 @@ namespace TaskJWT.Services
                                     Username = reader["Username"].ToString(),
                                     Role = (UserRole)Convert.ToInt32(reader["RoleId"])
                                 };
-                            }
+                            } 
                         }
                     }
                 }
             }
+            Console.WriteLine("okay..");
 
             return user;
         }

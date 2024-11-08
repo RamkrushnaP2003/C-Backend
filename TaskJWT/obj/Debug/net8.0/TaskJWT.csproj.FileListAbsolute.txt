@@ -12,8 +12,6 @@
 /home/ram/C#/TaskJWT/bin/Debug/net8.0/K4os.Compression.LZ4.Streams.dll
 /home/ram/C#/TaskJWT/bin/Debug/net8.0/K4os.Hash.xxHash.dll
 /home/ram/C#/TaskJWT/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
-/home/ram/C#/TaskJWT/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
-/home/ram/C#/TaskJWT/bin/Debug/net8.0/Microsoft.Bcl.TimeProvider.dll
 /home/ram/C#/TaskJWT/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
 /home/ram/C#/TaskJWT/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
 /home/ram/C#/TaskJWT/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll

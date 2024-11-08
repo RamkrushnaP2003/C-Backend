@@ -18,7 +18,7 @@ namespace TaskJWT.Controllers
             _userService = userService;
         }
 
-        [AllowAnonymous]
+        // [AllowAnonymous]
         [HttpPost("create-user")]
         public IActionResult CreateUser([FromBody] CreateUserModel model)
         {
@@ -27,7 +27,7 @@ namespace TaskJWT.Controllers
             return Ok("User created successfully.");
         }
 
-        [AllowAnonymous] 
+        /*[AllowAnonymous] 
         [HttpPost("create-initial-admin")]
         public IActionResult CreateInitialAdmin([FromBody] CreateUserModel model)
         {
@@ -35,6 +35,6 @@ namespace TaskJWT.Controllers
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
             _userService.CreateUser(model.Username, passwordHash, 1); // RoleId for Admin
             return Ok("Initial Admin user created successfully.");
-        }
+        }*/
     }
 }
