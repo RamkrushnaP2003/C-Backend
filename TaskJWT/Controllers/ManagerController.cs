@@ -9,16 +9,16 @@ namespace TaskJWT.Controllers
     [ApiController]
     public class ManagerController : ControllerBase
     {
-        private readonly IUserService _userService;
-        public ManagerController(IUserService userService) {
-            _userService = userService;
+        private readonly IUserReadService _userReadService;
+        public ManagerController(IUserReadService userReadService) {
+            _userReadService = userReadService;
         }
 
         [Authorize(Roles = "Manager,Admin")]
         [HttpGet("data")]
         public IActionResult GetAllManager()
         {
-            List<User> managers = _userService.GetAllManagers();
+            List<User> managers = _userReadService.GetAllManagers();
             return Ok(managers);
         }
     }

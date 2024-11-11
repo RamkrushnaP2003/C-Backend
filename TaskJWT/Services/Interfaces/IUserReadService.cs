@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace TaskJWT.Services.Interfaces
 {
-    public interface IUserService
+    public interface IUserReadService
     {
-        User Authenticate(string username, string password);
-        void CreateUser(string username, string passwordHash, int roleId);
         List<User> GetAllManagers();
         List<User> GetAllEmployees();
         List<User> GetAllUsers();

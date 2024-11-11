@@ -19,11 +19,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<DbContext>();
 
 // Repositories
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserReadRepository, UserRepository>();
+builder.Services.AddScoped<IUserWriteRepository, UserRepository>();
 
 // Services
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserReadService, UserReadService>();
+builder.Services.AddScoped<IUserWriteService, UserWriteService>();
 
 // Controllers
 builder.Services.AddControllers();

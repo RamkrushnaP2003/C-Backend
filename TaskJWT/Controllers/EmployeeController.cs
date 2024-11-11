@@ -9,18 +9,18 @@ namespace TaskJWT.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserReadService _userReadService;
 
-        public EmployeeController(IUserService userService) 
+        public EmployeeController(IUserReadService userReadService) 
         {
-            _userService = userService;
+            _userReadService = userReadService;
         } 
 
         [Authorize(Roles = "Admin,Manager,Employee")]
         [HttpGet("data")]
         public IActionResult GetEmployeeData()
         {
-            var employees = _userService.GetAllEmployees();
+            var employees = _userReadService.GetAllEmployees();
             return Ok(employees);
         }
     }

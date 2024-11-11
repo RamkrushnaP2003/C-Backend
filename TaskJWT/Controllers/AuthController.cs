@@ -10,18 +10,18 @@ namespace TaskJWT.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ITokenService _tokenService;
-        private readonly IUserService _userService;
+        private readonly IAuthService _authService;
 
-        public AuthController(ITokenService tokenService, IUserService userService)
+        public AuthController(ITokenService tokenService, IAuthService authService)
         {
             _tokenService = tokenService;
-            _userService = userService;
+            _authService = authService;
         }
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel model)
         {
-            var user = _userService.Authenticate(model.Username, model.Password);
+            var user = _authService.Authenticate(model.Username, model.Password);
             if (user == null)
                 return Unauthorized();
 

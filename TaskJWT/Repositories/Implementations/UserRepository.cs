@@ -7,7 +7,7 @@ using TaskJWT.Data;
 
 namespace TaskJWT.Repositories.Implementations
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserWriteRepository, IUserReadRepository
     {
         private readonly DbContext _dbContext;
 
@@ -19,10 +19,10 @@ namespace TaskJWT.Repositories.Implementations
         public User GetByUsername(string username)
         {
             User user = null;
-            using (var connection = _dbContext.CreateConnection())
+            using (MySqlConnection connection = _dbContext.CreateConnection())
             {
                 connection.Open();
-                using (var command = new MySqlCommand("sp_GetUserByUsername", connection))
+                using (MySqlCommand command = new MySqlCommand("sp_GetUserByUsername", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("userNameParam", username);
@@ -48,10 +48,10 @@ namespace TaskJWT.Repositories.Implementations
 
         public void CreateUser(string username, string passwordHash, int roleId)
         {
-            using (var connection = _dbContext.CreateConnection())
+            using (MySqlConnection connection = _dbContext.CreateConnection())
             {
                 connection.Open();
-                using (var command = new MySqlCommand("sp_CreateUser", connection))
+                using (MySqlCommand command = new MySqlCommand("sp_CreateUser", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("_Username", username);
@@ -62,25 +62,121 @@ namespace TaskJWT.Repositories.Implementations
             }
         }
 
-        public List<User> GetAllUsers()
-        {
+        // public List<User> GetAllUsers()
+        // {
+        //     List<User> users = new List<User>();
+        //     using (MySqlConnection connection = _dbContext.CreateConnection())
+        //     {
+        //         connection.Open();
+        //         using (MySqlCommand command = new MySqlCommand("sp_GetAllUser", connection))
+        //         {
+        //             command.CommandType = System.Data.CommandType.StoredProcedure;
+        //             using (var reader = command.ExecuteReader())
+        //             {
+        //                 while (reader.Read())
+        //                 {
+        //                     var user = new User
+        //                     {
+        //                         Id = Convert.ToInt32(reader["UserId"]),
+        //                         Username = reader["Username"].ToString(),
+        //                         Role = (UserRole)Convert.ToInt32(reader["RoleId"]),
+        //                         PasswordHash = reader["PasswordHash"].ToString()
+        //                     };
+        //                     users.Add(user);
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     return users;
+        // }
+
+        // public List<User> GetAllManagers()
+        // {
+        //     List<User> managers = new List<User>();
+        //     using (MySqlConnection connection = _dbContext.CreateConnection())
+        //     {
+        //         connection.Open();
+        //         using (MySqlCommand command = new MySqlCommand("sp_GetManagers", connection))
+        //         {
+        //             command.CommandType = System.Data.CommandType.StoredProcedure;
+        //             using (var reader = command.ExecuteReader())
+        //             {
+        //                 while (reader.Read())
+        //                 {
+        //                     var manager = new User
+        //                     {
+        //                         Id = Convert.ToInt32(reader["UserId"]),
+        //                         Username = reader["Username"].ToString(),
+        //                         PasswordHash = reader["PasswordHash"].ToString(),
+        //                         Role = (UserRole)Convert.ToInt32(reader["RoleId"])
+        //                     };
+        //                     managers.Add(manager);
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     return managers;
+        // }
+
+        // public List<User> GetAllEmployees()
+        // {
+        //     List<User> employees = new List<User>();
+        //     using (MySqlConnection connection = _dbContext.CreateConnection())
+        //     {
+        //         connection.Open();
+        //         using (MySqlCommand command = new MySqlCommand("sp_GetEmployees", connection))
+        //         {
+        //             command.CommandType = System.Data.CommandType.StoredProcedure;
+        //             using (var reader = command.ExecuteReader())
+        //             {
+        //                 while (reader.Read())
+        //                 {
+        //                     var employee = new User
+        //                     {
+        //                         Id = Convert.ToInt32(reader["UserId"]),
+        //                         Username = reader["Username"].ToString(),
+        //                         PasswordHash = reader["PasswordHash"].ToString(),
+        //                         Role = (UserRole)Convert.ToInt32(reader["RoleId"])
+        //                     };
+        //                     employees.Add(employee);
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     return employees;
+        // }
+
+        public List<User> GetAllEmployees() {
+            return GetUsersByProcedure("sp_GetEmployees");
+        }
+
+        public List<User> GetAllManagers() {
+            return GetUsersByProcedure("sp_GetManagers");
+        }
+
+        public List<User> GetAllUsers() {
+            return GetUsersByProcedure("sp_GetAllUser");
+        }
+
+        public List<User> GetUsersByProcedure(string procedureName) {
             List<User> users = new List<User>();
-            using (var connection = _dbContext.CreateConnection())
+            using(MySqlConnection connection = _dbContext.CreateConnection())
             {
                 connection.Open();
-                using (var command = new MySqlCommand("sp_GetAllUser", connection))
+                using (MySqlCommand command = new MySqlCommand(procedureName, connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    using (var reader = command.ExecuteReader())
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        while(reader.Read())
                         {
-                            var user = new User
+                            User user = new User
                             {
                                 Id = Convert.ToInt32(reader["UserId"]),
                                 Username = reader["Username"].ToString(),
-                                Role = (UserRole)Convert.ToInt32(reader["RoleId"]),
-                                PasswordHash = reader["PasswordHash"].ToString()
+                                PasswordHash = reader["PasswordHash"].ToString(),
+                                Role = (UserRole)Convert.ToInt32(reader["RoleId"])
                             };
                             users.Add(user);
                         }
@@ -88,62 +184,6 @@ namespace TaskJWT.Repositories.Implementations
                 }
             }
             return users;
-        }
-
-        public List<User> GetAllManagers()
-        {
-            List<User> managers = new List<User>();
-            using (var connection = _dbContext.CreateConnection())
-            {
-                connection.Open();
-                using (var command = new MySqlCommand("sp_GetManagers", connection))
-                {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var manager = new User
-                            {
-                                Id = Convert.ToInt32(reader["UserId"]),
-                                Username = reader["Username"].ToString(),
-                                PasswordHash = reader["PasswordHash"].ToString(),
-                                Role = (UserRole)Convert.ToInt32(reader["RoleId"])
-                            };
-                            managers.Add(manager);
-                        }
-                    }
-                }
-            }
-            return managers;
-        }
-
-        public List<User> GetAllEmployees()
-        {
-            List<User> employees = new List<User>();
-            using (var connection = _dbContext.CreateConnection())
-            {
-                connection.Open();
-                using (var command = new MySqlCommand("sp_GetEmployees", connection))
-                {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var employee = new User
-                            {
-                                Id = Convert.ToInt32(reader["UserId"]),
-                                Username = reader["Username"].ToString(),
-                                PasswordHash = reader["PasswordHash"].ToString(),
-                                Role = (UserRole)Convert.ToInt32(reader["RoleId"])
-                            };
-                            employees.Add(employee);
-                        }
-                    }
-                }
-            }
-            return employees;
         }
     }
 }

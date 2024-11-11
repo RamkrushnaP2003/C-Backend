@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskJWT.Models;
+using TaskJWT.Services.Implementations;
 using TaskJWT.Services.Interfaces;
 
 namespace TaskJWT.Controllers
@@ -10,29 +11,29 @@ namespace TaskJWT.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserReadService _userReadService;
 
-        public AdminController(IUserService userService)
+        public AdminController(IUserReadService userReadService)
         {
-            _userService = userService;
+            _userReadService = userReadService;
         }
 
         [HttpGet("users")]
         public IActionResult GetAllUsers()
         {
-            return Ok(_userService.GetAllUsers());
+            return Ok(_userReadService.GetAllUsers());
         }
 
         [HttpGet("managers")]
         public IActionResult GetAllManagers()
         {
-            return Ok(_userService.GetAllManagers());
+            return Ok(_userReadService.GetAllManagers());
         }
 
         [HttpGet("employees")]
         public IActionResult GetAllEmployees()
         {
-            return Ok(_userService.GetAllEmployees());
+            return Ok(_userReadService.GetAllEmployees());
         }
     }
 }
