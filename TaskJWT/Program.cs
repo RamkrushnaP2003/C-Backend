@@ -2,20 +2,33 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
 using System.Text;
-using TaskJWT.Data; 
+using TaskJWT.Data;
 using TaskJWT.Services;
+using TaskJWT.Repositories.Interfaces;
+using TaskJWT.Repositories.Implementations;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models; 
+using Microsoft.OpenApi.Models;
+using TaskJWT.Services.Interfaces;
+using TaskJWT.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
+
+// Database Context
 builder.Services.AddSingleton<DbContext>();
+
+// Repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
+// Controllers
 builder.Services.AddControllers();
 
+// Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -31,11 +44,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
-// Configure JWT authentication
+// Authorization
 builder.Services.AddAuthorization();
 
-// Add Swagger services to the container
+// Swagger Configuration
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -79,21 +91,20 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
-    // Enable Swagger middleware for development environment
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskJWT API v1");
-        c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
+        c.RoutePrefix = string.Empty; // Swagger UI at the app's root
     });
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthentication(); // Add authentication middleware
+app.UseAuthorization(); // Add authorization middleware
 
 app.MapControllers();
 

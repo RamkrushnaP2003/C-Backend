@@ -1,7 +1,7 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TaskJWT.Models;
 using TaskJWT.Services;
+using TaskJWT.Services.Interfaces;
 
 namespace TaskJWT.Controllers
 {
@@ -9,24 +9,23 @@ namespace TaskJWT.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
+        private readonly IUserService _userService;
 
-        public AuthController(IUserService userService, ITokenService tokenService)
+        public AuthController(ITokenService tokenService, IUserService userService)
         {
-            _userService = userService;
             _tokenService = tokenService;
+            _userService = userService;
         }
 
-        // Endpoint for logging in
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginModel loginModel)
+        public IActionResult Login([FromBody] LoginModel model)
         {
-            var user = _userService.Authenticate(loginModel.Username, loginModel.Password);
+            var user = _userService.Authenticate(model.Username, model.Password);
             if (user == null)
-                return Unauthorized("Invalid credentials.");
+                return Unauthorized();
 
-            var token = _tokenService.GenerateToken(user); // Example: "Admin" role
+            var token = _tokenService.GenerateToken(user);
             return Ok(new { Token = token });
         }
     }

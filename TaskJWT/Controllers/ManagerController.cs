@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskJWT.Models;
-using TaskJWT.Services;
+using TaskJWT.Services.Interfaces;
 
 namespace TaskJWT.Controllers
 {

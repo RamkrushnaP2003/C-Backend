@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ram/C#/TaskJWT/TaskJWT.csproj": {}
+    "/home/ram/MindNerves/C#/TaskJWT/TaskJWT.csproj": {}
   },
   "projects": {
-    "/home/ram/C#/TaskJWT/TaskJWT.csproj": {
+    "/home/ram/MindNerves/C#/TaskJWT/TaskJWT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ram/C#/TaskJWT/TaskJWT.csproj",
+        "projectUniqueName": "/home/ram/MindNerves/C#/TaskJWT/TaskJWT.csproj",
         "projectName": "TaskJWT",
-        "projectPath": "/home/ram/C#/TaskJWT/TaskJWT.csproj",
+        "projectPath": "/home/ram/MindNerves/C#/TaskJWT/TaskJWT.csproj",
         "packagesPath": "/home/ram/.nuget/packages/",
-        "outputPath": "/home/ram/C#/TaskJWT/obj/",
+        "outputPath": "/home/ram/MindNerves/C#/TaskJWT/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ram/.nuget/NuGet/NuGet.Config"

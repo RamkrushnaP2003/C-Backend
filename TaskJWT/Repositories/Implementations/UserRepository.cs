@@ -1,33 +1,30 @@
-using System;
-using Microsoft.AspNetCore.Identity;
 using MySql.Data.MySqlClient;
-using TaskJWT.Data;
 using TaskJWT.Models;
+using TaskJWT.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
+using TaskJWT.Data;
 
-namespace TaskJWT.Services
+namespace TaskJWT.Repositories.Implementations
 {
-    public class UserService : IUserService
+    public class UserRepository : IUserRepository
     {
         private readonly DbContext _dbContext;
 
-        public UserService(DbContext dbContext)
+        public UserRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public User Authenticate(string username, string password)
+        public User GetByUsername(string username)
         {
             User user = null;
-
             using (var connection = _dbContext.CreateConnection())
             {
                 connection.Open();
-
                 using (var command = new MySqlCommand("sp_GetUserByUsername", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    // Add the parameter and set its value
                     command.Parameters.AddWithValue("userNameParam", username);
 
                     using (var reader = command.ExecuteReader())
@@ -35,21 +32,17 @@ namespace TaskJWT.Services
                         if (reader.Read())
                         {
                             string storedPasswordHash = reader["PasswordHash"].ToString();
-                            if (BCrypt.Net.BCrypt.Verify(password, storedPasswordHash))
+                            user = new User
                             {
-                                user = new User
-                                {
-                                    Id = Convert.ToInt32(reader["UserId"]),
-                                    Username = reader["Username"].ToString(),
-                                    Role = (UserRole)Convert.ToInt32(reader["RoleId"])
-                                };
-                            } 
+                                Id = Convert.ToInt32(reader["UserId"]),
+                                Username = reader["Username"].ToString(),
+                                Role = (UserRole)Convert.ToInt32(reader["RoleId"]),
+                                PasswordHash = storedPasswordHash
+                            };
                         }
                     }
                 }
             }
-            Console.WriteLine("okay..");
-
             return user;
         }
 
@@ -58,35 +51,60 @@ namespace TaskJWT.Services
             using (var connection = _dbContext.CreateConnection())
             {
                 connection.Open();
-        
                 using (var command = new MySqlCommand("sp_CreateUser", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("_Username", username);
                     command.Parameters.AddWithValue("_PasswordHash", passwordHash);
                     command.Parameters.AddWithValue("_RoleId", roleId);
-        
                     command.ExecuteNonQuery();
                 }
             }
         }
 
-        public List<User> GetAllManagers()
+        public List<User> GetAllUsers()
         {
-            List<User> managers = new List<User>();
-            
-            using(MySqlConnection connection = _dbContext.CreateConnection()) {
+            List<User> users = new List<User>();
+            using (var connection = _dbContext.CreateConnection())
+            {
                 connection.Open();
-
-                using (MySqlCommand command = new MySqlCommand("sp_GetManagers", connection))
+                using (var command = new MySqlCommand("sp_GetAllUser", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            User manager = new User {
+                            var user = new User
+                            {
+                                Id = Convert.ToInt32(reader["UserId"]),
+                                Username = reader["Username"].ToString(),
+                                Role = (UserRole)Convert.ToInt32(reader["RoleId"]),
+                                PasswordHash = reader["PasswordHash"].ToString()
+                            };
+                            users.Add(user);
+                        }
+                    }
+                }
+            }
+            return users;
+        }
+
+        public List<User> GetAllManagers()
+        {
+            List<User> managers = new List<User>();
+            using (var connection = _dbContext.CreateConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand("sp_GetManagers", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var manager = new User
+                            {
                                 Id = Convert.ToInt32(reader["UserId"]),
                                 Username = reader["Username"].ToString(),
                                 PasswordHash = reader["PasswordHash"].ToString(),
@@ -97,30 +115,28 @@ namespace TaskJWT.Services
                     }
                 }
             }
-
             return managers;
         }
 
-        public List<User> GetAllEmployees() {
+        public List<User> GetAllEmployees()
+        {
             List<User> employees = new List<User>();
-            using (MySqlConnection connection = _dbContext.CreateConnection())
+            using (var connection = _dbContext.CreateConnection())
             {
                 connection.Open();
-
-                using (MySqlCommand command = new MySqlCommand("sp_GetEmployees", connection)) 
+                using (var command = new MySqlCommand("sp_GetEmployees", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    using (MySqlDataReader reader = command.ExecuteReader()) 
+                    using (var reader = command.ExecuteReader())
                     {
-                        while(reader.Read()) 
+                        while (reader.Read())
                         {
-                            User employee = new User
+                            var employee = new User
                             {
                                 Id = Convert.ToInt32(reader["UserId"]),
                                 Username = reader["Username"].ToString(),
                                 PasswordHash = reader["PasswordHash"].ToString(),
-                                Role = (UserRole)Convert.ToInt32(reader["RoleId"]) 
+                                Role = (UserRole)Convert.ToInt32(reader["RoleId"])
                             };
                             employees.Add(employee);
                         }

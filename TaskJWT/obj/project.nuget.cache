@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hIKKuxbVT3UY0iegjpVLQYZ6qz+01eKMf2zcJ3S1hzfKfJwGK3cf7W3h5Vybg3P+uHz0bbACOY/SylzIoT/Dtw==",
+  "dgSpecHash": "2vE/AHlGytoV3ix8mZXdVUnbcyLLl9nG4iZP4ugC8kEOyS2NfmpjqKwunkj0qK4mtpad3eT9quvql2eSqaFJag==",
   "success": true,
-  "projectFilePath": "/home/ram/C#/TaskJWT/TaskJWT.csproj",
+  "projectFilePath": "/home/ram/MindNerves/C#/TaskJWT/TaskJWT.csproj",
   "expectedPackageFiles": [
     "/home/ram/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/ram/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",

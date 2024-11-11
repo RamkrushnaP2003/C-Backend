@@ -1,12 +1,12 @@
+using TaskJWT.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TaskJWT.Models;
 
-namespace TaskJWT.Services
+namespace TaskJWT.Services.Implementations
 {
     public class TokenService : ITokenService
     {
@@ -33,7 +33,7 @@ namespace TaskJWT.Services
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30), // Adjust expiration time as necessary
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: creds
             );
 

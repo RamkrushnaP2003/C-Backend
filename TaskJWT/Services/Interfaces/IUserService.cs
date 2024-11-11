@@ -1,6 +1,7 @@
 using TaskJWT.Models;
+using System.Collections.Generic;
 
-namespace TaskJWT.Services
+namespace TaskJWT.Services.Interfaces
 {
     public interface IUserService
     {
@@ -8,5 +9,6 @@ namespace TaskJWT.Services
         void CreateUser(string username, string passwordHash, int roleId);
         List<User> GetAllManagers();
         List<User> GetAllEmployees();
+        List<User> GetAllUsers();
     }
 }
