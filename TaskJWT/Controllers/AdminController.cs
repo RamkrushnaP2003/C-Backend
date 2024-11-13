@@ -12,10 +12,12 @@ namespace TaskJWT.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IUserReadService _userReadService;
+        private readonly IUserWriteService _userWriteService;
 
-        public AdminController(IUserReadService userReadService)
+        public AdminController(IUserReadService userReadService, IUserWriteService userWriteService)
         {
             _userReadService = userReadService;
+            _userWriteService = userWriteService;
         }
 
         [HttpGet("users")]
@@ -34,6 +36,13 @@ namespace TaskJWT.Controllers
         public IActionResult GetAllEmployees()
         {
             return Ok(_userReadService.GetAllEmployees());
+        }
+
+        [HttpPost("new-user")]
+        public IActionResult CreateUser([FromBody] CreateUserModel newUser) 
+        {
+            _userWriteService.CreateUser(newUser);
+            return Ok(new { message = "User created successfully." });
         }
     }
 }

@@ -4,7 +4,7 @@ namespace TaskJWT.Repositories.Interfaces
 {
     public interface IUserWriteRepository
     {
-        void CreateUser(string username, string password, int roleId);
+        CreateUserModel CreateUser(CreateUserModel newUser);
 
         User GetByUsername(string username);
     }

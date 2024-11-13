@@ -46,7 +46,7 @@ namespace TaskJWT.Repositories.Implementations
             return user;
         }
 
-        public void CreateUser(string username, string passwordHash, int roleId)
+        public CreateUserModel CreateUser(CreateUserModel newUser)
         {
             using (MySqlConnection connection = _dbContext.CreateConnection())
             {
@@ -54,12 +54,13 @@ namespace TaskJWT.Repositories.Implementations
                 using (MySqlCommand command = new MySqlCommand("sp_CreateUser", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("_Username", username);
-                    command.Parameters.AddWithValue("_PasswordHash", passwordHash);
-                    command.Parameters.AddWithValue("_RoleId", roleId);
+                    command.Parameters.AddWithValue("_Username", newUser.Username);
+                    command.Parameters.AddWithValue("_PasswordHash", newUser.Password);
+                    command.Parameters.AddWithValue("_RoleId", newUser.Role);
                     command.ExecuteNonQuery();
                 }
             }
+            return newUser;
         }
 
         // public List<User> GetAllUsers()

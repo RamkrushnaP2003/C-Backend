@@ -14,7 +14,8 @@ namespace TaskJWT.Services.Implementations
             _userWriteRepository = userWriteRepository;
         }
 
-        public void CreateUser(string username, string passwordHash, int roleId) => _userWriteRepository.CreateUser(username, passwordHash, roleId);
-
+        public CreateUserModel CreateUser(CreateUserModel newUser) {
+            return _userWriteRepository.CreateUser(newUser);
+        }
     }
 }

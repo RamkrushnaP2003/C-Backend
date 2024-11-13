@@ -5,6 +5,6 @@ namespace TaskJWT.Services.Interfaces
 {
     public interface IUserWriteService
     {
-        void CreateUser(string username, string passwordHash, int roleId);
+        CreateUserModel CreateUser(CreateUserModel newUser);
     }
 }
