@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskExcelMongoDB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9c22182406b2b7044cbc1834683a6ce6701f6be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d811f9bacd1687c967cada81a7fd0724b2b5841")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskExcelMongoDB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskExcelMongoDB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

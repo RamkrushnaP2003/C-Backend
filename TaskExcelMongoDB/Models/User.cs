@@ -10,15 +10,15 @@ namespace TaskExcelMongoDB.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [Required] // Adds validation for non-nullable fields
-        public string FullName { get; set; }
+        [Required(ErrorMessage = "FullName is required")]
+        public string? FullName { get; set; }
         
-        [Required]
-        public string MobileNo { get; set; }
+        [Required(ErrorMessage = "MobileNo is required.")]
+        public string? MobileNo { get; set; }
 
-        public string Address { get; set; }
+        public string? Address { get; set; }
         public decimal Salary { get; set; }
-        [Required]
-        public string DateOfBirth { get; set; }
+        [Required(ErrorMessage = "Data of birth is required")]
+        public string? DateOfBirth { get; set; }
     }
 }
