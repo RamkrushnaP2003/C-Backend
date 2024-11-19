@@ -21,12 +21,13 @@ namespace TaskExcelMongoDB.Services.Implementations
         public async Task<IActionResult> GetAllUsers() 
         {
             
-            List<User> users = await _userRepository.GetAllUsers();
-            if (users == null || users.Count == 0) 
+            var users = await _userRepository.GetAllUsers();
+            var response = new Dictionary<string, object>
             {
-                return new BadRequestObjectResult(new { Message = "No users found. Please add users." });
-            }
-            return new OkObjectResult(new { Users = users });
+                { "Users", users }
+            };
+
+            return new OkObjectResult(response);
         }
 
         public async Task<IActionResult> CreateNewUser([FromBody] User newUser) 

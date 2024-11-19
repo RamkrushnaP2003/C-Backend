@@ -14,9 +14,10 @@ namespace TaskExcelMongoDB.Repositories.Implementations
 {
     public class UserRepository : IUserRepository
     {
-        private readonly MongoDBContext _mongoDBContext;
+        private readonly IMongoDBContext _mongoDBContext;
 
-        public UserRepository(MongoDBContext mongoDBContext) {
+        public UserRepository(IMongoDBContext mongoDBContext)
+        {
             _mongoDBContext = mongoDBContext;
         }
 
@@ -32,20 +33,26 @@ namespace TaskExcelMongoDB.Repositories.Implementations
             return users;
         }
 
-        public async Task<User> CreateNewUser([FromBody] User newUser) 
+        public async Task<User> CreateNewUser([FromBody] User newUser)
         {
-            if(newUser == null || String.IsNullOrEmpty(newUser.FullName) || String.IsNullOrEmpty(newUser.Address) || String.IsNullOrEmpty(newUser.DateOfBirth) || String.IsNullOrEmpty(newUser.MobileNo)) {
+            if (newUser == null || string.IsNullOrEmpty(newUser.FullName) || string.IsNullOrEmpty(newUser.Address) ||
+                string.IsNullOrEmpty(newUser.DateOfBirth) || string.IsNullOrEmpty(newUser.MobileNo))
+            {
                 throw new InvalidUserDataException("User data contains null or empty fields.");
             }
+
             await _mongoDBContext.Users.InsertOneAsync(newUser);
             return newUser;
         }
 
         public async Task<User> EditUser([FromBody] User updatedUser, string id)
         {
-            if(updatedUser == null || String.IsNullOrEmpty(updatedUser.FullName) || String.IsNullOrEmpty(updatedUser.Address) || String.IsNullOrEmpty(updatedUser.DateOfBirth) || String.IsNullOrEmpty(updatedUser.MobileNo)) {
+            if (updatedUser == null || string.IsNullOrEmpty(updatedUser.FullName) || string.IsNullOrEmpty(updatedUser.Address) ||
+                string.IsNullOrEmpty(updatedUser.DateOfBirth) || string.IsNullOrEmpty(updatedUser.MobileNo))
+            {
                 throw new InvalidUserDataException("User data contains null or empty fields.");
             }
+
             var filter = Builders<User>.Filter.Eq(user => user.Id, id);
             var update = Builders<User>.Update
                 .Set(u => u.FullName, updatedUser.FullName)

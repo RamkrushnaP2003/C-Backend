@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Register services
 builder.Services.AddSingleton<MongoDBContext>();
+builder.Services.AddScoped<IMongoDBContext, MongoDBContext>();
 builder.Services.AddScoped<IFileProcessingService, FileProcessingService>();
 builder.Services.AddScoped<IStoreExcelService, StoreExcelService>();
 builder.Services.AddScoped<IStoreExcelRepository, StoreExcelRepository>();
@@ -21,10 +22,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Use custom exception handling middleware
-app.UseMiddleware<ExceptionHandlingMiddleware>(); // Register custom middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>(); 
 
-// Configure other middlewares
 app.UseAuthorization();
 app.MapControllers();
 
