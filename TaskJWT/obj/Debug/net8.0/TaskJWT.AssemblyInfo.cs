@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskJWT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9484f430cf79adb43ed8d5aa5e286664d8fec7e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+569573853bc5ff0113924da83286b9cf0cc5a555")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskJWT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskJWT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

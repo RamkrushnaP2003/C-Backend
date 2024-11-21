@@ -35,15 +35,37 @@ namespace TaskExcelMongoDB.Tests.Repositories
                 new User { Id = "2", FullName = "Jane Smith", Address = "456 Elm St", MobileNo = "0987654321", DateOfBirth = "1990-01-01", Salary = 60000 }
             };
 
+            var mockCursor = new Mock<IAsyncCursor<User>>();
+
+            // Simulate MoveNextAsync and Current behavior
+            mockCursor.SetupSequence(cursor => cursor.MoveNextAsync(It.IsAny<CancellationToken>()))
+                    .ReturnsAsync(true)  // First batch has data
+                    .ReturnsAsync(false); // No more data
+
+            mockCursor.Setup(cursor => cursor.Current).Returns(users);
+
+            // Simulate FindAsync returning the mock cursor
             _mockCollection
-                .Setup(c => c.FindAsync(It.IsAny<FilterDefinition<User>>(), null, default))
-                .ReturnsAsync(new Mock<IAsyncCursor<User>>(users).Object);
+                .Setup(c => c.FindAsync(
+                    It.IsAny<FilterDefinition<User>>(),
+                    It.IsAny<FindOptions<User>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockCursor.Object);
 
             // Act
             var result = await _userRepository.GetAllUsers();
 
+            // Debugging output
+            Console.WriteLine($"Count = {result.Count}");
+
+            // Verify mock interaction
+            _mockCollection.Verify(c => c.FindAsync(It.IsAny<FilterDefinition<User>>(), It.IsAny<FindOptions<User>>(), It.IsAny<CancellationToken>()), Times.Once);
+
             // Assert
+            Assert.NotNull(result);
             Assert.Equal(2, result.Count);
+            Assert.Equal("John Doe", result[0].FullName);
+            Assert.Equal("Jane Smith", result[1].FullName);
         }
 
         [Fact]
@@ -56,9 +78,22 @@ namespace TaskExcelMongoDB.Tests.Repositories
                 new User { Id = "2", FullName = "Jane Smith", Address = "456 Elm St", MobileNo = "0987654321", DateOfBirth = "1990-01-01", Salary = 60000 }
             };
 
+            var mockCursor = new Mock<IAsyncCursor<User>>();
+
+            // Simulate the cursor behavior
+            mockCursor.SetupSequence(cursor => cursor.MoveNextAsync(It.IsAny<CancellationToken>()))
+                    .ReturnsAsync(true)  
+                    .ReturnsAsync(false); 
+
+            mockCursor.Setup(cursor => cursor.Current).Returns(users);
+
+            // Simulate the `FindAsync` method to return the mocked cursor
             _mockCollection
-                .Setup(c => c.FindAsync(It.IsAny<FilterDefinition<User>>(), null, default))
-                .ReturnsAsync(new Mock<IAsyncCursor<User>>(users).Object);
+                .Setup(c => c.FindAsync(
+                    It.IsAny<FilterDefinition<User>>(), 
+                    It.IsAny<FindOptions<User>>(), 
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockCursor.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<InvalidUserDataException>(() => _userRepository.GetAllUsers());
@@ -110,7 +145,7 @@ namespace TaskExcelMongoDB.Tests.Repositories
             // Arrange
             var updatedUser = new User
             {
-                Id = "1",
+                Id = "673d8822d1461327076d38c9",
                 FullName = "John Doe Updated",
                 Address = "123 Updated St",
                 MobileNo = "1234567890",
@@ -118,17 +153,23 @@ namespace TaskExcelMongoDB.Tests.Repositories
                 Salary = 55000
             };
 
-            _mockCollection.Setup(c => c.FindOneAndUpdateAsync(
-                It.IsAny<FilterDefinition<User>>(),
-                It.IsAny<UpdateDefinition<User>>(),
-                null,
-                default)).ReturnsAsync(updatedUser);
+            // Mock the FindOneAndUpdateAsync method without using the extension method
+            _mockCollection
+                .Setup(c => c.FindOneAndUpdateAsync(
+                    It.IsAny<FilterDefinition<User>>(), 
+                    It.IsAny<UpdateDefinition<User>>(),  
+                    It.IsAny<FindOneAndUpdateOptions<User, User>>(),  
+                    It.IsAny<CancellationToken>()  
+                ))
+                .ReturnsAsync(updatedUser);  
 
             // Act
-            var result = await _userRepository.EditUser(updatedUser, "1");
+            var result = await _userRepository.EditUser(updatedUser, "673d8822d1461327076d38c9");
 
             // Assert
-            Assert.Equal("John Doe Updated", result.FullName);
+            Assert.NotNull(result);  
+            Assert.Equal("John Doe Updated", result.FullName);  
+            Assert.Equal("123 Updated St", result.Address);  
         }
 
         [Fact]

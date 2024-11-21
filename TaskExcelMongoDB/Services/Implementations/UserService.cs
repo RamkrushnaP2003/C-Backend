@@ -32,18 +32,41 @@ namespace TaskExcelMongoDB.Services.Implementations
 
         public async Task<IActionResult> CreateNewUser([FromBody] User newUser) 
         {           
-            if(newUser==null) {
-                return new BadRequestObjectResult(new { Message = "Fill the user deatils"});
+            // if(newUser==null) {
+            //     return new BadRequestObjectResult(new { Message = "Fill the user deatils"});
+            // }
+            // await _userRepository.CreateNewUser(newUser);
+            // return new OkObjectResult(new {Users = newUser});
+            if (newUser == null)
+            {
+                return new BadRequestObjectResult(new Dictionary<string, object>
+                {
+                    { "Message", "Fill the user details" }
+                });
             }
+
+            // Simulate repository interaction
             await _userRepository.CreateNewUser(newUser);
-            return new OkObjectResult(new {Users = newUser});
+
+            return new OkObjectResult(new Dictionary<string, object>
+            {
+                { "Message", newUser } // Returning the created user
+            });
         }
 
         public async Task<IActionResult> EditUser([FromBody] User updatedUser, string id) 
         {
-            if(updatedUser.FullName == string.Empty || updatedUser.Address == string.Empty || updatedUser.Address == string.Empty || updatedUser.DateOfBirth == string.Empty) return new BadRequestObjectResult(new {Message = "Enter valid information"}); 
+            if(updatedUser.FullName == string.Empty || updatedUser.Address == string.Empty || updatedUser.Address == string.Empty || updatedUser.DateOfBirth == string.Empty) {
+                return new BadRequestObjectResult(new Dictionary<string, object>
+                {
+                    { "Message", "Enter valid information" }
+                });
+            }
             await _userRepository.EditUser(updatedUser, id);
-            return new OkObjectResult(new {Message = $"User with id : {id} updated"});
+            return new OkObjectResult(new Dictionary<string, object>
+            {
+                { "Message", $"User with id : {id} updated" }
+            });
         }
     }
 }

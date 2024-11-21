@@ -1,0 +1,6 @@
+Why we need repository pattern?
+
+Repository pattern is popular approach to organizing the data access code way that keeps clean, maiatanable and testable.
+It act as middle(intrmediate) layer between bussiness login and data layer.
+It abstacts the data access layer so that business logic doesn't directly interact with data starage.
+BY using this pattern, developer can perform CRUD operation and other data interaction through a central repository class, which helps in managing 	changes to data model easily.

@@ -23,14 +23,20 @@ namespace TaskExcelMongoDB.Repositories.Implementations
 
         public async Task<List<User>> GetAllUsers()
         {
-            List<User> users = await _mongoDBContext.Users.Find(Builders<User>.Filter.Where(user => true)).ToListAsync();
+            var users = await _mongoDBContext.Users.FindAsync(Builders<User>.Filter.Empty);
 
-            if (users == null || users.Any(user => string.IsNullOrEmpty(user.FullName) || user.DateOfBirth == null))
+            Console.WriteLine($"Mongo Cursor : {users}");
+
+            List<User> userList = await users.ToListAsync();
+
+            Console.WriteLine($"Retrieved used count = ${userList.Count}");
+
+            if (userList == null || userList.Any(user => string.IsNullOrEmpty(user.FullName) || user.DateOfBirth == null))
             {
                 throw new InvalidUserDataException("User data contains null or empty fields.");
             }
 
-            return users;
+            return userList;
         }
 
         public async Task<User> CreateNewUser([FromBody] User newUser)
@@ -45,7 +51,7 @@ namespace TaskExcelMongoDB.Repositories.Implementations
             return newUser;
         }
 
-        public async Task<User> EditUser([FromBody] User updatedUser, string id)
+        public async Task<User> EditUser(User updatedUser, string id)
         {
             if (updatedUser == null || string.IsNullOrEmpty(updatedUser.FullName) || string.IsNullOrEmpty(updatedUser.Address) ||
                 string.IsNullOrEmpty(updatedUser.DateOfBirth) || string.IsNullOrEmpty(updatedUser.MobileNo))
@@ -60,8 +66,9 @@ namespace TaskExcelMongoDB.Repositories.Implementations
                 .Set(u => u.Address, updatedUser.Address)
                 .Set(u => u.Salary, updatedUser.Salary)
                 .Set(u => u.DateOfBirth, updatedUser.DateOfBirth);
-            await _mongoDBContext.Users.FindOneAndUpdateAsync(filter, update);
-            return updatedUser;
+
+            var result = await _mongoDBContext.Users.FindOneAndUpdateAsync(filter, update);
+            return result ?? throw new InvalidOperationException("Update failed; user not found.");
         }
     }
 }

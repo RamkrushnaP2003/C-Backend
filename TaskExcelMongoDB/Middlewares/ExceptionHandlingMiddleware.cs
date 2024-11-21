@@ -42,6 +42,7 @@ namespace TaskExcelMongoDB.Middleware
                 ApplicationException => new ExceptionResponse(HttpStatusCode.BadRequest, "Application exception occurred"),
                 KeyNotFoundException => new ExceptionResponse(HttpStatusCode.NotFound, "The requested key was not found."),
                 UnauthorizedAccessException => new ExceptionResponse(HttpStatusCode.Unauthorized, "Unauthorized access"),
+                ArgumentException => new ExceptionResponse(HttpStatusCode.BadRequest, "User data contains empty or null fields."),
                 _ => new ExceptionResponse(HttpStatusCode.InternalServerError, "Internal server error. Please try again")
             };
 

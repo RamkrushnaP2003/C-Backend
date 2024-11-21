@@ -222,22 +222,27 @@ var assemblies = [
     "name": "TaskExcelMongoDB",
     "classes": [
       { "name": "Program", "rp": "TaskExcelMongoDB_Program.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 30, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Controllers.StoreExcelController", "rp": "TaskExcelMongoDB_StoreExcelController.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Controllers.UserController", "rp": "TaskExcelMongoDB_UserController.html", "cl": 8, "ucl": 6, "cal": 14, "tl": 40, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Controllers.StoreExcelController", "rp": "TaskExcelMongoDB_StoreExcelController.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Controllers.UserController", "rp": "TaskExcelMongoDB_UserController.html", "cl": 14, "ucl": 0, "cal": 14, "tl": 40, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "TaskExcelMongoDB.Data.MongoDBContext", "rp": "TaskExcelMongoDB_MongoDBContext.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 24, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Exceptions.InvalidUserDataException", "rp": "TaskExcelMongoDB_InvalidUserDataException.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Exceptions.InvalidUserDataException", "rp": "TaskExcelMongoDB_InvalidUserDataException.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "TaskExcelMongoDB.Exceptions.ValidationException", "rp": "TaskExcelMongoDB_ValidationException.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Middleware.ExceptionHandlingMiddleware", "rp": "TaskExcelMongoDB_ExceptionHandlingMiddleware.html", "cl": 0, "ucl": 29, "cal": 29, "tl": 66, "cb": 0, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Middleware.ExceptionResponse", "rp": "TaskExcelMongoDB_ExceptionResponse.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 66, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Middleware.ExceptionHandlingMiddleware", "rp": "TaskExcelMongoDB_ExceptionHandlingMiddleware.html", "cl": 0, "ucl": 30, "cal": 30, "tl": 67, "cb": 0, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Middleware.ExceptionResponse", "rp": "TaskExcelMongoDB_ExceptionResponse.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 67, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Models.UploadExcelResponse", "rp": "TaskExcelMongoDB_UploadExcelResponse.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "TaskExcelMongoDB.Models.User", "rp": "TaskExcelMongoDB_User.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 24, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Repositories.Implementations.StoreExcelRepository", "rp": "TaskExcelMongoDB_StoreExcelRepository.html", "cl": 0, "ucl": 9, "cal": 9, "tl": 31, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Repositories.Implementations.UserRepository", "rp": "TaskExcelMongoDB_UserRepository.html", "cl": 0, "ucl": 34, "cal": 34, "tl": 67, "cb": 0, "tb": 22, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Repositories.Implementations.StoreExcelRepository", "rp": "TaskExcelMongoDB_StoreExcelRepository.html", "cl": 11, "ucl": 1, "cal": 12, "tl": 35, "cb": 6, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Repositories.Implementations.UserRepository", "rp": "TaskExcelMongoDB_UserRepository.html", "cl": 37, "ucl": 0, "cal": 37, "tl": 74, "cb": 23, "tb": 24, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "TaskExcelMongoDB.Services.Implementations.FileProcessingService", "rp": "TaskExcelMongoDB_FileProcessingService.html", "cl": 0, "ucl": 27, "cal": 27, "tl": 46, "cb": 0, "tb": 24, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Services.Implementations.StoreExcelService", "rp": "TaskExcelMongoDB_StoreExcelService.html", "cl": 0, "ucl": 15, "cal": 15, "tl": 36, "cb": 0, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Services.Implementations.UserService", "rp": "TaskExcelMongoDB_UserService.html", "cl": 12, "ucl": 11, "cal": 23, "tl": 49, "cb": 0, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Tests.TestMongoDBContext", "rp": "TaskExcelMongoDB_TestMongoDBContext.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 19, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Tests.UserControllerTests", "rp": "TaskExcelMongoDB_UserControllerTests.html", "cl": 0, "ucl": 42, "cal": 42, "tl": 71, "cb": 0, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "TaskExcelMongoDB.Tests.UserServiceTests", "rp": "TaskExcelMongoDB_UserServiceTests.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 46, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Services.Implementations.StoreExcelService", "rp": "TaskExcelMongoDB_StoreExcelService.html", "cl": 17, "ucl": 1, "cal": 18, "tl": 40, "cb": 5, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Services.Implementations.UserService", "rp": "TaskExcelMongoDB_UserService.html", "cl": 37, "ucl": 0, "cal": 37, "tl": 72, "cb": 10, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Controllers.StoreExcelControllerTests", "rp": "TaskExcelMongoDB_StoreExcelControllerTests.html", "cl": 0, "ucl": 41, "cal": 41, "tl": 85, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Controllers.UserControllerTests", "rp": "TaskExcelMongoDB_UserControllerTests.html", "cl": 0, "ucl": 125, "cal": 125, "tl": 209, "cb": 0, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Data.TestMongoDBContext", "rp": "TaskExcelMongoDB_TestMongoDBContext.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 18, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Repositories.StoreExcelRepositoryTests", "rp": "TaskExcelMongoDB_StoreExcelRepositoryTests.html", "cl": 0, "ucl": 46, "cal": 46, "tl": 109, "cb": 0, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Repositories.UserRepositoryTests", "rp": "TaskExcelMongoDB_UserRepositoryTests.html", "cl": 0, "ucl": 112, "cal": 112, "tl": 193, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Services.StoreExcelServiceTests", "rp": "TaskExcelMongoDB_StoreExcelServiceTests.html", "cl": 0, "ucl": 34, "cal": 34, "tl": 79, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TaskExcelMongoDB.Tests.Services.UserServiceTests", "rp": "TaskExcelMongoDB_UserServiceTests.html", "cl": 0, "ucl": 82, "cal": 82, "tl": 155, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -258,37 +263,13 @@ var riskHotspots = [
       { "value": 24, "exceeded": true },
     ]},
   {
-    "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Repositories.Implementations.UserRepository", "reportPath": "TaskExcelMongoDB_UserRepository.html", "methodName": "CreateNewUser()", "methodShortName": "CreateNewUser()", "fileIndex": 0, "line": 37,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Repositories.Implementations.UserRepository", "reportPath": "TaskExcelMongoDB_UserRepository.html", "methodName": "EditUser()", "methodShortName": "EditUser()", "fileIndex": 0, "line": 49,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
     "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Middleware.ExceptionHandlingMiddleware", "reportPath": "TaskExcelMongoDB_ExceptionHandlingMiddleware.html", "methodName": "HandleExceptionAsync()", "methodShortName": "HandleExceptionAsync()", "fileIndex": 0, "line": 35,
     "metrics": [
-      { "value": 72, "exceeded": true },
-      { "value": 8, "exceeded": false },
+      { "value": 110, "exceeded": true },
+      { "value": 10, "exceeded": false },
     ]},
   {
-    "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Services.Implementations.UserService", "reportPath": "TaskExcelMongoDB_UserService.html", "methodName": "EditUser()", "methodShortName": "EditUser()", "fileIndex": 0, "line": 43,
-    "metrics": [
-      { "value": 72, "exceeded": true },
-      { "value": 8, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Services.Implementations.StoreExcelService", "reportPath": "TaskExcelMongoDB_StoreExcelService.html", "methodName": "UploadExcel()", "methodShortName": "UploadExcel()", "fileIndex": 0, "line": 21,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Tests.UserControllerTests", "reportPath": "TaskExcelMongoDB_UserControllerTests.html", "methodName": "GetAllUsers_ShouldReturnOk_WhenUsersExist()", "methodShortName": "GetAllUsers_ShouldReturnOk_WhenUsersExist()", "fileIndex": 0, "line": 24,
+    "assembly": "TaskExcelMongoDB", "class": "TaskExcelMongoDB.Tests.Controllers.UserControllerTests", "reportPath": "TaskExcelMongoDB_UserControllerTests.html", "methodName": "GetAllUsers_ShouldReturnOk_WhenUsersExist()", "methodShortName": "GetAllUsers_ShouldReturnOk_WhenUsersExist()", "fileIndex": 0, "line": 24,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
