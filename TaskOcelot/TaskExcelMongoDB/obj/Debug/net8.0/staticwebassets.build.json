@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "yte5Ei9D2QdnxIFBSC7ioaoSisD4+CoCUAIn3llNMQw=",
+  "Source": "TaskExcelMongoDB",
+  "BasePath": "_content/TaskExcelMongoDB",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

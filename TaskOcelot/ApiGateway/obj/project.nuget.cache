@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "dgSpecHash": "npaaleX7hcayCES6rBPTdGoBhvAumEoHbwqtDznjvxU5+D9tr3j8ATKc33+FK/8DitI55aEYROK4QWJYJeK7ng==",
+  "success": true,
+  "projectFilePath": "/home/ram/MindNerves/C#/TaskOcelet/ApiGateway/ApiGateway.csproj",
+  "expectedPackageFiles": [
+    "/home/ram/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
+    "/home/ram/.nuget/packages/ipaddressrange/6.1.0/ipaddressrange.6.1.0.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.aspnetcore.jsonpatch/8.0.11/microsoft.aspnetcore.jsonpatch.8.0.11.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.aspnetcore.middlewareanalysis/8.0.11/microsoft.aspnetcore.middlewareanalysis.8.0.11.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/8.0.11/microsoft.aspnetcore.mvc.newtonsoftjson.8.0.11.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.aspnetcore.openapi/8.0.10/microsoft.aspnetcore.openapi.8.0.10.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.0/microsoft.extensions.dependencyinjection.9.0.0.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.extensions.diagnosticadapter/3.1.32/microsoft.extensions.diagnosticadapter.3.1.32.nupkg.sha512",
+    "/home/ram/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/home/ram/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/ram/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "/home/ram/.nuget/packages/ocelot/23.4.2/ocelot.23.4.2.nupkg.sha512",
+    "/home/ram/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
+    "/home/ram/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+    "/home/ram/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
+    "/home/ram/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
+    "/home/ram/.nuget/packages/system.diagnostics.diagnosticsource/4.7.1/system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
